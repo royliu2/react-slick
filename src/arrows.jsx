@@ -18,12 +18,15 @@ export var PrevArrow = React.createClass({
       prevHandler = null;
     }
 
+    var prevArrowStyle = this.props.arrowStyle;
+    prevArrowStyle.display = 'block';
+
     var prevArrowProps = {
       key: '0',
       ref: 'previous',
       'data-role': 'none',
       className: classnames(prevClasses),
-      style: {display: 'block'},
+      style: prevArrowStyle,
       onClick: prevHandler
     };
     var prevArrow;
@@ -65,13 +68,15 @@ export var NextArrow = React.createClass({
       }
     }
 
+    var nextArrowStyle = this.props.arrowStyle;
+    nextArrowStyle.display = 'block';
 
     var nextArrowProps = {
       key: '1',
       ref: 'next',
       'data-role': 'none',
       className: classnames(nextClasses),
-      style: {display: 'block'},
+      style: nextArrowStyle,
       onClick: nextHandler
     };
 
