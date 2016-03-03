@@ -322,7 +322,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      slidesToShow: this.props.slidesToShow,
 	      prevArrow: this.props.prevArrow,
 	      nextArrow: this.props.nextArrow,
-	      clickHandler: this.changeSlide
+	      clickHandler: this.changeSlide,
+	      prevArrowStyle: this.props.prevArrowStyle,
+	      nextArrowStyle: this.props.nextArrowStyle
 	    };
 
 	    if (this.props.arrows) {
