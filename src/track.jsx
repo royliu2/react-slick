@@ -106,6 +106,8 @@ var renderSlides = (spec) => {
           }));
         }
       }
+    } else {
+      count = --count;
     }
   });
 
