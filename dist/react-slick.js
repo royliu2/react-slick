@@ -1428,50 +1428,52 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var child;
 
 	  _react2['default'].Children.forEach(spec.children, function (elem, index) {
-	    if (!spec.lazyLoad | (spec.lazyLoad && spec.lazyLoadedList.indexOf(index) >= 0)) {
-	      child = elem;
-	    } else {
-	      child = _react2['default'].createElement('div', null);
-	    }
-	    var childStyle = getSlideStyle((0, _objectAssign2['default'])({}, spec, { index: index }));
-	    var slickClasses = getSlideClasses((0, _objectAssign2['default'])({ index: index }, spec));
-	    var cssClasses;
+	    if (elem) {
+	      if (!spec.lazyLoad | (spec.lazyLoad && spec.lazyLoadedList.indexOf(index) >= 0)) {
+	        child = elem;
+	      } else {
+	        child = _react2['default'].createElement('div', null);
+	      }
+	      var childStyle = getSlideStyle((0, _objectAssign2['default'])({}, spec, { index: index }));
+	      var slickClasses = getSlideClasses((0, _objectAssign2['default'])({ index: index }, spec));
+	      var cssClasses;
 
-	    if (child.props.className) {
-	      cssClasses = (0, _classnames2['default'])(slickClasses, child.props.className);
-	    } else {
-	      cssClasses = slickClasses;
-	    }
-
-	    slides.push(_react2['default'].cloneElement(child, {
-	      key: index,
-	      'data-index': index,
-	      className: cssClasses,
-	      style: (0, _objectAssign2['default'])({}, child.props.style || {}, childStyle)
-	    }));
-
-	    // variableWidth doesn't wrap properly.
-	    if (spec.infinite && spec.fade === false) {
-	      var infiniteCount = spec.variableWidth ? spec.slidesToShow + 1 : spec.slidesToShow;
-
-	      if (index >= count - infiniteCount) {
-	        key = -(count - index);
-	        preCloneSlides.push(_react2['default'].cloneElement(child, {
-	          key: key,
-	          'data-index': key,
-	          className: cssClasses,
-	          style: (0, _objectAssign2['default'])({}, child.props.style || {}, childStyle)
-	        }));
+	      if (child.props.className) {
+	        cssClasses = (0, _classnames2['default'])(slickClasses, child.props.className);
+	      } else {
+	        cssClasses = slickClasses;
 	      }
 
-	      if (index < infiniteCount) {
-	        key = count + index;
-	        postCloneSlides.push(_react2['default'].cloneElement(child, {
-	          key: key,
-	          'data-index': key,
-	          className: cssClasses,
-	          style: (0, _objectAssign2['default'])({}, child.props.style || {}, childStyle)
-	        }));
+	      slides.push(_react2['default'].cloneElement(child, {
+	        key: index,
+	        'data-index': index,
+	        className: cssClasses,
+	        style: (0, _objectAssign2['default'])({}, child.props.style || {}, childStyle)
+	      }));
+
+	      // variableWidth doesn't wrap properly.
+	      if (spec.infinite && spec.fade === false) {
+	        var infiniteCount = spec.variableWidth ? spec.slidesToShow + 1 : spec.slidesToShow;
+
+	        if (index >= count - infiniteCount) {
+	          key = -(count - index);
+	          preCloneSlides.push(_react2['default'].cloneElement(child, {
+	            key: key,
+	            'data-index': key,
+	            className: cssClasses,
+	            style: (0, _objectAssign2['default'])({}, child.props.style || {}, childStyle)
+	          }));
+	        }
+
+	        if (index < infiniteCount) {
+	          key = count + index;
+	          postCloneSlides.push(_react2['default'].cloneElement(child, {
+	            key: key,
+	            'data-index': key,
+	            className: cssClasses,
+	            style: (0, _objectAssign2['default'])({}, child.props.style || {}, childStyle)
+	          }));
+	        }
 	      }
 	    }
 	  });

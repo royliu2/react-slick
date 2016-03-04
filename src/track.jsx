@@ -59,50 +59,52 @@ var renderSlides = (spec) => {
   var child;
 
   React.Children.forEach(spec.children, (elem, index) => {
-    if (!spec.lazyLoad | (spec.lazyLoad && spec.lazyLoadedList.indexOf(index) >= 0)) {
-      child = elem;
-    } else {
-      child = (<div></div>);
-    }
-    var childStyle = getSlideStyle(assign({}, spec, {index: index}));
-    var slickClasses = getSlideClasses(assign({index: index}, spec));
-    var cssClasses;
+    if (elem) {
+      if (!spec.lazyLoad | (spec.lazyLoad && spec.lazyLoadedList.indexOf(index) >= 0)) {
+        child = elem;
+      } else {
+        child = (<div></div>);
+      }
+      var childStyle = getSlideStyle(assign({}, spec, {index: index}));
+      var slickClasses = getSlideClasses(assign({index: index}, spec));
+      var cssClasses;
 
-    if (child.props.className) {
-        cssClasses = classnames(slickClasses, child.props.className);
-    } else {
-        cssClasses = slickClasses;
-    }
-
-    slides.push(React.cloneElement(child, {
-      key: index,
-      'data-index': index,
-      className: cssClasses,
-      style: assign({}, child.props.style || {}, childStyle)
-    }));
-
-    // variableWidth doesn't wrap properly.
-    if (spec.infinite && spec.fade === false) {
-      var infiniteCount = spec.variableWidth ? spec.slidesToShow + 1 : spec.slidesToShow;
-
-      if (index >= (count - infiniteCount)) {
-        key = -(count - index);
-        preCloneSlides.push(React.cloneElement(child, {
-          key: key,
-          'data-index': key,
-          className: cssClasses,
-          style: assign({}, child.props.style || {}, childStyle)
-        }));
+      if (child.props.className) {
+          cssClasses = classnames(slickClasses, child.props.className);
+      } else {
+          cssClasses = slickClasses;
       }
 
-      if (index < infiniteCount) {
-        key = count + index;
-        postCloneSlides.push(React.cloneElement(child, {
-          key: key,
-          'data-index': key,
-          className: cssClasses,
-          style: assign({}, child.props.style || {}, childStyle)
-        }));
+      slides.push(React.cloneElement(child, {
+        key: index,
+        'data-index': index,
+        className: cssClasses,
+        style: assign({}, child.props.style || {}, childStyle)
+      }));
+
+      // variableWidth doesn't wrap properly.
+      if (spec.infinite && spec.fade === false) {
+        var infiniteCount = spec.variableWidth ? spec.slidesToShow + 1 : spec.slidesToShow;
+
+        if (index >= (count - infiniteCount)) {
+          key = -(count - index);
+          preCloneSlides.push(React.cloneElement(child, {
+            key: key,
+            'data-index': key,
+            className: cssClasses,
+            style: assign({}, child.props.style || {}, childStyle)
+          }));
+        }
+
+        if (index < infiniteCount) {
+          key = count + index;
+          postCloneSlides.push(React.cloneElement(child, {
+            key: key,
+            'data-index': key,
+            className: cssClasses,
+            style: assign({}, child.props.style || {}, childStyle)
+          }));
+        }
       }
     }
   });
