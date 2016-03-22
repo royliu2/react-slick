@@ -1619,7 +1619,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    var prevArrowStyle = this.props.prevArrowStyle || {};
-	    prevArrowStyle.display = 'block';
 
 	    var prevArrowProps = {
 	      key: '0',
@@ -1675,7 +1674,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    var nextArrowStyle = this.props.nextArrowStyle || {};
-	    nextArrowStyle.display = 'block';
 
 	    var nextArrowProps = {
 	      key: '1',
