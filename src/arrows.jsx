@@ -19,7 +19,6 @@ export var PrevArrow = React.createClass({
     }
 
     var prevArrowStyle = this.props.prevArrowStyle || {};
-    prevArrowStyle.display = 'block';
 
     var prevArrowProps = {
       key: '0',
@@ -69,7 +68,6 @@ export var NextArrow = React.createClass({
     }
 
     var nextArrowStyle = this.props.nextArrowStyle || {};
-    nextArrowStyle.display = 'block';
 
     var nextArrowProps = {
       key: '1',
