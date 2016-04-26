@@ -240,10 +240,10 @@ var helpers = {
     if (swipeAngle < 0) {
         swipeAngle = 360 - Math.abs(swipeAngle);
     }
-    if ((swipeAngle <= 45) && (swipeAngle >= 0) || (swipeAngle <= 360) && (swipeAngle >= 315)) {
+    if ((swipeAngle <= 90) && (swipeAngle >= 0) || (swipeAngle <= 360) && (swipeAngle >= 270)) {
         return (this.props.rtl === false ? 'left' : 'right');
     }
-    if ((swipeAngle >= 135) && (swipeAngle <= 225)) {
+    if ((swipeAngle > 90) && (swipeAngle < 270)) {
         return (this.props.rtl === false ? 'right' : 'left');
     }
 
